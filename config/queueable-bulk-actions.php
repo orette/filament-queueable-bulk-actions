@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'columns' => [
+        /*
+         *
+         */
+
+        'model_morph_key' => 'model_id',
+    ],
     /**
      * Table names used to created database tables needed for the package
      */

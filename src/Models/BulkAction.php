@@ -20,7 +20,7 @@ class BulkAction extends Model
         'identifier',
         'status',
         'job',
-        'user_id',
+        'admin_user_id',
         'total_records',
         'data',
     ];
@@ -42,7 +42,7 @@ class BulkAction extends Model
         $provider = config('auth.guards.' . $guard . '.provider');
         $userModel = config('auth.providers.' . $provider . '.model');
 
-        return $this->belongsTo($userModel, 'user_id');
+        return $this->belongsTo($userModel, 'admin_user_id');
     }
 
     public function records(): HasMany

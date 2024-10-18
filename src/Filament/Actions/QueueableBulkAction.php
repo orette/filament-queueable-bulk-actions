@@ -8,8 +8,8 @@ use Bytexr\QueueableBulkActions\Models\BulkAction;
 use Bytexr\QueueableBulkActions\Support\Config;
 use Closure;
 use Exception;
+use Filament\Facades\Filament;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class QueueableBulkAction extends \Filament\Tables\Actions\BulkAction
@@ -45,7 +45,7 @@ class QueueableBulkAction extends \Filament\Tables\Actions\BulkAction
             'type' => TypeEnum::TABLE,
             'identifier' => $identifier,
             'job' => $this->getJob(),
-            'user_id' => Auth::user()->getKey(),
+            'admin_user_id' => Filament::auth()->id(),
             'total_records' => $totalRecords,
             'data' => $data,
         ]);

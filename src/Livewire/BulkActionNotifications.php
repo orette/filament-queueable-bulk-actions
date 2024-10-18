@@ -4,11 +4,11 @@ namespace Bytexr\QueueableBulkActions\Livewire;
 
 use Bytexr\QueueableBulkActions\Enums\BulkActions\TypeEnum;
 use Bytexr\QueueableBulkActions\Support\Config;
+use Filament\Facades\Filament;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class BulkActionNotifications extends Component
@@ -23,7 +23,7 @@ class BulkActionNotifications extends Component
     {
         $this->bulkActions = Config::bulkActionModel()::query()
             ->where('type', TypeEnum::TABLE)
-            ->where('user_id', Auth::user()->getKey())
+            ->where('admin_user_id', Filament::auth()->id())
             ->where('identifier', $this->identifier)
             ->whereNull('dismissed_at')
             ->get();
